@@ -1,0 +1,28 @@
+<h1>Review Answers</h1>
+<h3>Total Score : {{average_score}} / {{total}}</h3>
+<h3>Efficiency: {{efficiency|floatformat:2}}</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Your Answer</th>
+            <th>Correct Answer</th>
+        
+        </tr>
+    </thead>
+    <tbody>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.question_ans }}</td>
+            {% if result.question_ans == result.answer %}
+            <td style="background-color: lightgreen;">Correct!</td>
+            {% else %}
+            <td style="background-color: rgb(233, 115, 115);">{{ result.answer }}</td>
+            {% endif %}
+  
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
+
+
