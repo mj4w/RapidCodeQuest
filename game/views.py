@@ -19,7 +19,7 @@ def home(request):
 
     return render(request,'home.html',context)
 
-@login_required(login_url = 'login')
+
 def questions(request,choice):
     question = Questions.objects.filter(category__exact = choice)
 
@@ -29,7 +29,7 @@ def questions(request,choice):
     }
     return render(request,'question.html',context)
 
-@login_required(login_url = 'login')
+
 def result(request):
 
     if request.method == 'POST':
@@ -64,21 +64,23 @@ def result(request):
             average = 0
 
         
+        if request.user.is_authenticated:
+            
+            try:
+                #save the result in the database
+                for i in range(total):
 
-        try:
-            #save the result in the database
-            for i in range(total):
-
-                result_instance = Result.objects.create(
-                    user = request.user,
-                    question_id=question_id[i],
-                    question_ans=question_ans[i],
-                    answer=answer[i],
-                    score=score,
-                )
-        except ZeroDivisionError:
-            print("Wrong Move")
-
+                    result_instance = Result.objects.create(
+                        user = request.user,
+                        question_id=question_id[i],
+                        question_ans=question_ans[i],
+                        answer=answer[i],
+                        score=score,
+                    )
+            except ZeroDivisionError:
+                print("Wrong Move")
+        else:
+            None
 
     context = {
         'score':score,
