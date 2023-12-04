@@ -2,30 +2,25 @@
 
 {% block content %}
 <div class="title-box">
-  
-    <h1 class="title">Welcome to RapidCode Quest</h1>
-    <h2 class="sub-title">Difficulty: </h2>
-    {% for choice in choices %}
-    <a href="{{choice.0}}">{{choice.1}}</a>
-    {% endfor %}
-    {% if user.is_authenticated %}
+    <h1 class="title">Welcome to Sprint</h1>
+    {% if activate_leaderboard == 1 %}
+    <a href="{% url 'leaderboards' %}">Leaderboards</a>
+    {% endif %}
+    {% if activate_quiz == 0 and not request.user.is_authenticated  %}
+    <a href="{% url 'practice-q' %}">Practice</a>
+    {% else %}
+    <br>
+    <p style="color: rgba(117, 73, 236, 0.473);">Practice is now CLOSED! It's SPRINT TIME!</p>
+    {% endif %}
 
-        {% if results %}
-        <a href="{% url 'overall-result' request.user.id %}" style="padding: 0; font-size: 1.5rem;">(Complete Stages First) View Result</a>
-        {% else %}
-        <p style="color: white;">Wait for the Result</p>
-        {% endif %}
+    {% if activate_quiz == 1 %}
+    <a href="{% url 'quiz' %}">Game on</a>
+    {% else %}
+    <br>
+    <p style="color: rgba(117, 73, 236, 0.473);"> The sprint will open and <br> scheduled to start on <strong>December 9.</strong> <br> Be prepared and enjoy the experience!</p>
     {% endif %}
-    <!-- {% if results|length >= 2 %}
-    <p style="color:#fff;">Basic Score:{{ results.1.score }}</p>  
-    {% endif %}
-    {% if results|length >= 3 %}
-    <p style="color:#fff;">Intermediate Score: {{ results.25.score }}</p>  
-    {% endif %}
-    {% if results|length >= 4 %}
-    <p style="color:#fff;">Intermediate Score: {{ results.30.score }}</p>  
-    {% endif %} -->
 </div>
+
 
 
 

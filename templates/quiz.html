@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="title-box">
+  
+    <h1 class="title">Welcome to RapidCode Quest</h1>
+    <h2 class="sub-title">Difficulty: </h2>
+    {% for choice in choices %}
+    <a href="{{choice.0}}" class="choice-link">{{choice.1}}</a>
+    {% endfor %}
+    {% if user.is_authenticated %}
+
+        {% if results %}
+        <a  href="{% url 'overall-result' request.user.id %}" style="padding: 0; font-size: 1.5rem;">View Result</a>
+        {% else %}
+        <p style="color: white;">Wait for the Result</p>
+        {% endif %}
+    {% endif %}
+    <!-- {% if results|length >= 2 %}
+    <p style="color:#fff;">Basic Score:{{ results.1.score }}</p>  
+    {% endif %}
+    {% if results|length >= 3 %}
+    <p style="color:#fff;">Intermediate Score: {{ results.25.score }}</p>  
+    {% endif %}
+    {% if results|length >= 4 %}
+    <p style="color:#fff;">Intermediate Score: {{ results.30.score }}</p>  
+    {% endif %} -->
+</div>
+
+
+
+
+
+{% endblock content %}

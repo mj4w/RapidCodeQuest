@@ -2,9 +2,9 @@
 
 {% block content %}
 <div class="result">
-    <h1>Your Score is {{ score }} / {{ total }} </h1>
+    <h1>Your Score is {{ total_score }} / {{ total }} </h1>
     <h1> Question Attempted : {{ total }}</h1>
-    <h1>Your Efficiency is: {{ average }}</h1>
+    <h1>Your Efficiency is: {{ average|floatformat:"2" }}</h1>
     <p>
         <a href="{% url 'home' %}">Take the next level -> </a>
     </p>

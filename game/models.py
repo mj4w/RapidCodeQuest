@@ -11,10 +11,10 @@ class Questions(models.Model):
         
     )
     question = models.CharField(max_length=250)
-    option_a = models.CharField(max_length=100)
-    option_b = models.CharField(max_length=100)
-    option_c = models.CharField(max_length=100)
-    option_d = models.CharField(max_length=100)
+    option_a = models.TextField()
+    option_b = models.TextField()
+    option_c = models.TextField()
+    option_d = models.TextField()
     answer = models.CharField(max_length=100)
     category = models.CharField(max_length=100,choices=CAT_CHOICES)
 
@@ -32,3 +32,25 @@ class Result(models.Model):
     question_ans = models.CharField(max_length=100)
     answer = models.CharField(max_length=100)
     score = models.IntegerField(default=0)
+    
+
+class ActivateQuiz(models.Model):
+    activate_quiz = models.BooleanField(default=False)
+
+class ActivateLeaderboard(models.Model):
+    activate_leaderboard = models.BooleanField(default=False)
+    
+    
+# Practice Question DB
+class PracticeQ(models.Model):
+    
+    question = models.CharField(max_length=250)
+    option_a = models.TextField()
+    option_b = models.TextField()
+    option_c = models.TextField()
+    option_d = models.TextField()
+    answer = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.question
+    

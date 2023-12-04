@@ -4,3 +4,5 @@ from .models import *
 
 admin.site.register(Questions)
 admin.site.register(Result)
+admin.site.register(ActivateQuiz)
+admin.site.register(ActivateLeaderboard)

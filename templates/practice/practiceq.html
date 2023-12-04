@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<main class="container">
+	<section class="quiz-container">
+		<header class="quiz-header">
+			<h2>{{choice}}</h2>
+            <span style="text-align: right; text-decoration: none;"><a href="{% url 'home' %}"><i class='bx bx-left-arrow-alt'></i>Go back</a></span>
+			<div class="quiz-results">
+				<p><strong>Score:</strong> <span class="quiz-score"></span></p>
+			</div>
+		</header>
+
+		<!-- Quiz form -->
+		<form class="quiz-form" autocomplete="off" action="{% url 'result' %}" method="POST">
+			<!-- Question -->
+            {% for q in question %}
+			<div class="quiz-question" role="radiogroup">
+				<p>{{ forloop.counter }} . {{ q.question }}</p>
+				<div class="form-check">
+					<input type="radio" name="{{q.id}}" value="{{q.option_a}}">
+					<label for="q1a">{{q.option_a}}</label>
+				</div>
+				<div class="form-check">
+					<input type="radio" name="{{q.id}}" value="{{q.option_b}}">
+					<label for="q1b">{{q.option_b}}</label>
+				</div>
+				<div class="form-check">
+					<input type="radio" name="{{q.id}}" value="{{q.option_c}}">
+					<label for="q1c">{{q.option_c}}</label>
+				</div>
+				<div class="form-check">
+					<input type="radio" name="{{q.id}}" value="{{q.option_d}}">
+					<label for="q1d">{{q.option_d}}</label>
+				</div>
+			</div>
+            {% endfor %}
+			<!-- end question -->
+            {% csrf_token %}
+			<button type="submit">Show results</button>
+
+		</form>
+		<!-- end quiz -->
+	</section>
+</main>
+
+
+
+{% endblock content %}

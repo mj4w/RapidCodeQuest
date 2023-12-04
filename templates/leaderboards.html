@@ -1,0 +1,25 @@
+<h1>Leaderboards</h1>
+<h3>RANKING</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Total Score</th>
+        
+        
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.rank }}</td>
+            <td>{{ user.user.email }}</td>
+            <td>{{ user.user.username }}</td>
+            <td>{{ user.total_score }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
